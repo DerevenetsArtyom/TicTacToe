@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+# Choices for status
 GAME_STATUS_CHOICES = (
     ('A', 'Active'),
     ('F', 'First Player Wins'),
@@ -19,9 +19,9 @@ class Game(models.Model):
     status = models.CharField(max_length=1, default='A',
                               choices=GAME_STATUS_CHOICES)
 
-
     def __str__(self):
         return "{0} vs {1}".format(self.first_player, self.second_player)
+
 
 class Move(models.Model):
     x = models.IntegerField()
