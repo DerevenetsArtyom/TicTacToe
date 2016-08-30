@@ -1,6 +1,4 @@
 {% load staticfiles %}
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -43,7 +41,7 @@
             {% if user.is_authenticated %}
                 <li><a href="{% url 'boardgames_logout' %}">Logout</a></li>
             {% else %}
-                <li><a href="{% url 'boardgames_login' %}">Login</a></li>  
+                <li><a href="{% url 'boardgames_login' %}">Login</a></li>
             {% endif %}
           </ul>
       </div>
