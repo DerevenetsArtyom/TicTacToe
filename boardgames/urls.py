@@ -4,12 +4,10 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'boardgames.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'main.views.home', name='boardgames_home'),
+    url(r'^user/', include('user_profile.urls')),
 
     # Default Login / Logout
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='boardgames_login'),
