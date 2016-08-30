@@ -13,7 +13,9 @@ def home(request):
 
     waiting_games = active_games.filter(next_to_move=request.user)  # My turn
     other_games = active_games.exclude(next_to_move=request.user)  # Isn't my turn
+
+    # Pass created variables to context for template
     context = {'other_games': other_games,
-                'waiting_games': waiting_games,
-                'finished_games': finished_games}
+               'waiting_games': waiting_games,
+               'finished_games': finished_games}
     return render(request, "user_profile/home.html", context)
