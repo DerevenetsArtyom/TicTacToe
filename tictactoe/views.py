@@ -7,9 +7,9 @@ from .models import Invitation
 from .forms import InvitationForm
 
 
-# Creating new invitation from current user to another user
 @login_required
 def new_invitation(request):
+    """ Creating new invitation from current user to another user """
     if request.method == 'POST':
         invitation = Invitation(from_user=request.user)  # Add sending user manually
         form = InvitationForm(data=request.POST, instance=invitation)  # Add other data
@@ -24,6 +24,7 @@ def new_invitation(request):
 # Accepting invitation
 @login_required
 def accept_invitation(request, pk):
+    """ Take invitation based on pk and and create a game """
     invitation = get_object_or_404(Invitation, pk=pk)
     if not request.user == invitation.to_user:
         raise PermissionDenied
