@@ -30,6 +30,8 @@ def accept_invitation(request, pk):
     if request.method == 'POST':
         # If user clicked 'accept' button
         if "accept" in request.POST:
+            game = Game.objects.new_game(invitation)  # Instance with invitation params
+            game.save()
             invitation.delete()  # Remove invitation from DB
             return HttpResponse("Invitation Accepted!")
         else:
@@ -37,3 +39,11 @@ def accept_invitation(request, pk):
             return redirect('user_home')
     else:
         return render(request, "tictactoe/accept_invitation.html", {'invitation': invitation})
+
+
+@login_required
+def game_detail(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+    if game.is_users_move(request.user):
+        return redirect('tictactoe_game_do_move', pk=pk)
+    return render(request, "tictactoe/game_detail.html", {'game': game})
