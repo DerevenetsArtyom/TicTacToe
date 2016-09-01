@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'main.views.home', name='boardgames_home'),
     url(r'^user/', include('user_profile.urls')),
+    url(r'^tictactoe/', include('tictactoe.urls')),
 
     # Default Login / Logout
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='boardgames_login'),

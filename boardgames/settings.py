@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'main',
     'tictactoe',
     'user_profile',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +109,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 LOGIN_URL = 'boardgames_login'
 LOGOUT_URL = 'boardgames_logout'
 LOGIN_REDIRECT_URL = 'user_home'
+
+# Define BS version for crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
