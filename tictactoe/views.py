@@ -48,3 +48,22 @@ def game_detail(request, pk):
     if game.is_users_move(request.user):
         return redirect('tictactoe_game_do_move', pk=pk)
     return render(request, "tictactoe/game_detail.html", {'game': game})
+
+
+@login_required
+def game_do_move(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+    if not game.is_users_move(request.user):
+        raise PermissionDenied
+    context = {'game': game}
+    if request.method == 'POST':
+        form = MoveForm(data=request.POST, instance=game.create_move())
+        context['form'] = form
+        if form.is_valid():
+            move = form.save()
+            game.update_after_move(move)
+            game.save()
+            return redirect('tictactoe_game_detail', pk=pk)
+    else:
+        context['form'] = MoveForm()
+    return render(request, "tictactoe/game_do_move.html", context )

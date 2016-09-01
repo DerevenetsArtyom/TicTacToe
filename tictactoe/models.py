@@ -63,6 +63,10 @@ class Game(models.Model):
         # 'latest' use 'get_latest_by' field of model
         return self.move_set.latest()
 
+    # Check if current game is active and user has to move
+    def is_users_move(self, user):
+        return self.status == 'A' and self.next_to_move == user
+
     def get_absolute_url(self):
         return reverse('tictactoe_game_detail', args=[self.id])
 

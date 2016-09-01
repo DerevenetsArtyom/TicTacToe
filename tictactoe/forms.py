@@ -5,4 +5,4 @@ from .models import Invitation
 class InvitationForm(ModelForm):
     class Meta:
         model = Invitation
-        exclude = ['from_user']
+        exclude = ['from_user']  # We'll fill it automatically in form
